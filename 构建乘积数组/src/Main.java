@@ -12,14 +12,18 @@ import java.util.Arrays;
             return null;
         }
         int[] B = new int[A.length];
-        for (int i = 0; i < A.length; i++) {
-            B[i] = 1;
-            for (int j = 0; j < A.length; j++) {
-                if (j != i){
-                    B[i] *= A[j];
-                }
-            }
+        Arrays.fill(B, 1);
+        int leftProduct=1;
+        int rightProduct=1;
+        for(int i=0;i<A.length;i++){
+            B[i]*=leftProduct;
+            leftProduct*=A[i];
         }
+        for(int i=A.length-1;i>=0;i--){
+            B[i]*=rightProduct;
+            rightProduct*=A[i];
+        }
+
         return B;
     }
 }
